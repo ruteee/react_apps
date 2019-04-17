@@ -3,6 +3,7 @@ import Slick from 'react-slick'
 import { Link } from 'react-router-dom'
 import styles from './slider.css'
 
+
 const SliderTemplates = (props) => {
 
     let template = null;
