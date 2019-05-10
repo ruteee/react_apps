@@ -6,7 +6,7 @@ import { URL } from '../../../config'
 import styles from '../NewsList/news_list.css'
 
 import Button from '../Button/button'
-import CardInfo from '../CardInfo/card_info'
+import CardInfo from '../CardInfo/cardInfo'
 class NewsList extends Component {
 
     state = {
@@ -33,7 +33,7 @@ class NewsList extends Component {
                     <div>
                         <div className={styles.news_list_item}>
                             <Link to={`/articles/${item.id}`}>
-                                <CardInfo/>
+                                <CardInfo teams={this.state.teams} team={item.team} date={item.date}/>
                                 <h2>{item.title}</h2>
                             </Link>
                         </div>
@@ -65,7 +65,9 @@ class NewsList extends Component {
         axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
         .then( response => {
             this.setState({
-                items:[...this.state.items,...response.data]  
+                items:[...this.state.items,...response.data],
+                start,
+                end,
             })
         })
     }
@@ -75,7 +77,6 @@ class NewsList extends Component {
     }
 
     render() {
-        console.log(this.state.teams)
         return (
             <div>
                 <TransitionGroup
